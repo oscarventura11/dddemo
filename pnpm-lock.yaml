@@ -49,6 +49,9 @@ devDependencies:
   '@types/node':
     specifier: ^24.12.4
     version: 24.13.2
+  husky:
+    specifier: ^9.1.7
+    version: 9.1.7
   playwright-bdd:
     specifier: ^9.0.0
     version: 9.0.0(@playwright/test@1.60.0)
@@ -1721,6 +1724,12 @@ packages:
     engines: {node: ^20.17.0 || >=22.9.0}
     dependencies:
       lru-cache: 11.5.1
+    dev: true
+
+  /husky@9.1.7:
+    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
+    engines: {node: '>=18'}
+    hasBin: true
     dev: true
 
   /import-fresh@3.3.1:

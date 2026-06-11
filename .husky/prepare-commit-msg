@@ -1,0 +1,2 @@
+#!/bin/sh
+./scripts/commit-menu.sh "$1" "$2"
