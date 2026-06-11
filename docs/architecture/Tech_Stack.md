@@ -4,7 +4,7 @@
 - **Framework:** Preact (TypeScript)
 - **Runtime:** Vite
 - **UI Library:** Material UI (MUI)
-- **State Management:** `preact-signals`
+- **State Management:** `@preact/signals`
 - **DI:** `inversify` + `reflect-metadata`
 
 ## Shared Systems
@@ -14,5 +14,8 @@
 ## Testing
 - **Unit & Integration:** `vitest`
 - **Mocking:** `ts-mockito`
-- **Architecture Testing:** `ts-arch`
-- **E2E:** `cypress`
+- **Architecture Testing:** `tsarch`
+- **E2E:** `playwright` + `playwright-bdd` (Cucumber)
+
+## 🔗 Related
+- [Architecture MOC](./README.md)

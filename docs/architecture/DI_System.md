@@ -35,5 +35,5 @@ class InvoiceReadService {
 - In tests: use `Container.rebind()` with `ts-mockito` mocks.
 
 ## 🔗 Related
-- [[01_Architecture/README]] — Architecture MOC
-- [[01_Architecture/Hexagonal]] — Architecture using this DI system
+- [Architecture MOC](./README.md)
+- [Architecture using this DI system](./Hexagonal.md)

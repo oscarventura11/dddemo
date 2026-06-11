@@ -41,6 +41,6 @@ class CategoryStateService {
 - In tests: verify signal values after calling service methods.
 
 ## 🔗 Related
-- [[01_Architecture/README]] — Architecture MOC
-- [[01_Architecture/Hexagonal]] — Architecture where state management resides
-- [[01_Architecture/DI_System]] — StateServices registered via DI
+- [Architecture MOC](./README.md)
+- [Architecture where state management resides](./Hexagonal.md)
+- [StateServices registered via DI](./DI_System.md)

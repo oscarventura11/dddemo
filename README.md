@@ -1,6 +1,6 @@
 # DDDemo: DDD & Hexagonal Architecture in TypeScript
 
-A demonstration project refactoring a 'Bad Example' into a clean, testable, and scalable architecture using **Domain-Driven Design (DDD)** and **Hexagonal (Ports & Adapters) Architecture**.
+A demonstration project refactoring a "Bad Example" into a clean, testable, and scalable architecture using **Domain-Driven Design (DDD)** and **Hexagonal (Ports & Adapters) Architecture**.
 
 ## 🚀 Overview
 
@@ -15,6 +15,20 @@ The project follows a **Hexagonal Architecture** with four distinct layers:
 3.  **Infrastructure**: Implementation details (JSON/API Repositories, Mappers, DI configuration).
 4.  **Presentation**: UI Components (Dumb) and Containers (Smart).
 
+### Shared Services
+- **ErrorManager**: Centralized error handling across the application.
+- **NotificationService**: Unified user feedback system using MUI Snackbars.
+
+## 📁 Project Structure
+
+```text
+src/
+├── ddd/
+│   ├── category/       # Category feature (Domain, Application, Infrastructure, Presentation)
+│   └── shared/         # Shared kernels (Notification, Error, DI hooks)
+└── bad_example/        # The original legacy implementation for comparison
+```
+
 ## 🛠️ Tech Stack
 
 -   **UI Framework**: [Preact](https://preactjs.com/)
@@ -22,20 +36,8 @@ The project follows a **Hexagonal Architecture** with four distinct layers:
 -   **Dependency Injection**: [InversifyJS](https://inversify.io/)
 -   **Build Tool**: [Vite](https://vitejs.dev/)
 -   **Testing**: [Vitest](https://vitest.dev/)
--   **Arch. Validation**: [ts-arch](https://github.com/ts-arch/ts-arch)
-
-## 📁 Project Structure
-
-```text
-src/
-└── ddd/
-    ├── category/
-    │   ├── domain/         # Entities (Category, Collection), Value Objects
-    │   ├── application/    # Read/Write Services, State
-    │   ├── infrastructure/ # Repository implementations, DI
-    │   └── presentation/   # UI Components & Containers
-    └── __tests__/          # Architectural and Unit Tests
-```
+-   **E2E Testing**: [Playwright](https://playwright.dev/) with [Cucumber](https://cucumber.io/)
+-   **Arch. Validation**: [tsarch](https://github.com/pksunkara/tsarch)
 
 ## 🚦 Getting Started
 
@@ -55,18 +57,17 @@ pnpm dev
 
 ### Running Tests
 ```bash
-# Run all tests
+# Run all unit/integration tests
 pnpm test
 
-# Run architectural tests specifically
-pnpm test src/ddd/category/__tests__/arch.test.ts
+# Run E2E tests
+pnpm test:e2e
 ```
 
 ## 📜 Documentation
 
-Detailed architectural documentation can be found in the [`docs/`](./docs/) directory:
+Detailed architectural documentation can be found in the [`docs/`](./docs/architecture/README.md) directory:
 -   [Architecture Overview](./docs/architecture/README.md)
 -   [Hexagonal Layers](./docs/architecture/Hexagonal.md)
 -   [Tech Stack Details](./docs/architecture/Tech_Stack.md)
 -   [Refactor Plan](./DDD_REFACTOR_PLAN.md)
-# dddemo

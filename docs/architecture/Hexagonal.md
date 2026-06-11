@@ -57,6 +57,6 @@ Encapsulated in CategorySelected entity:
 - Entities and Value Objects should provide static `empty()` and `isEmpty()` methods to prevent null checks in the UI.
 
 ## 🔗 Related
-- [[01_Architecture/README]] — Architecture MOC
-- [[01_Architecture/DI_System]] — DI System connecting the layers
-- [[01_Architecture/State_Management]] — State pattern in the Application layer
+- [Architecture MOC](./README.md)
+- [DI System connecting the layers](./DI_System.md)
+- [State pattern in the Application layer](./State_Management.md)
