@@ -39,6 +39,12 @@ src/
 -   **E2E Testing**: [Playwright](https://playwright.dev/) with [Cucumber](https://cucumber.io/)
 -   **Arch. Validation**: [tsarch](https://github.com/pksunkara/tsarch)
 
+
+### Git Hooks (Husky)
+The project uses Husky to automate development standards:
+- **Pre-commit**: Displays an interactive menu to standardize commit messages (following Conventional Commits).
+- **Pre-push**: Runs all tests before allowing a push. It automatically stashes uncommitted changes to ensure tests run only on the code that is about to be pushed.
+
 ## 🚦 Getting Started
 
 ### Prerequisites

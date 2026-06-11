@@ -31,3 +31,11 @@ Follow these 5 steps to implement a new feature:
 ## 6. Coding Standards
 - **No Comments**: Do not add comments to the code. The code should be self-explanatory.
 
+
+## 7. Automated Safety Checks
+- **Committing**: When you run `git commit`, an interactive menu will help you format your message.
+- **Pushing**: Before a `git push`, the system will:
+  1. Stash your uncommitted work.
+  2. Run the full test suite.
+  3. Restore your work.
+  This prevents "dirty" local changes from causing false test results.

@@ -11,6 +11,8 @@
 - **Notifications:** Custom service with MUI Snackbar integration.
 - **Error Management:** Global `ErrorManager` using `NotificationService`.
 
+- **Git Hooks:** `husky` for automated pre-commit/pre-push checks.
+
 ## Testing
 - **Unit & Integration:** `vitest`
 - **Mocking:** `ts-mockito`

@@ -3,7 +3,7 @@ import { filesOfProject } from "tsarch";
 
 test("Domain layer should not depend on Application, Infrastructure or Presentation", async () => {
   const violations = await filesOfProject("tsconfig.app.json")
-    .matchingPattern("src/ddd/category/domain/(?!.*__tests__).*")
+    .matchingPattern("src/ddd/category/domain/(?!.*(__tests__|mothers)).*")
     .shouldNot()
     .dependOnFiles()
     .matchingPattern(
