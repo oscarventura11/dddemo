@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+.env*
+.vscode/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+.features-gen/
+playwright-report/
+test-results/

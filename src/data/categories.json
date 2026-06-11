@@ -1,0 +1,89 @@
+[
+  {
+    "id": "1",
+    "name": "Electronics",
+    "children": [
+      {
+        "id": "1-1",
+        "name": "Computers",
+        "children": [
+          {
+            "id": "1-1-1",
+            "name": "Laptops",
+            "children": [
+              {
+                "id": "1-1-1-1",
+                "name": "Gaming Laptops"
+              },
+              {
+                "id": "1-1-1-2",
+                "name": "Ultrabooks"
+              }
+            ]
+          },
+          {
+            "id": "1-1-2",
+            "name": "Desktops",
+            "children": [
+              {
+                "id": "1-1-2-1",
+                "name": "Workstations",
+                "children": [
+                  {
+                    "id": "1-1-2-1-1",
+                    "name": "Workstation",
+                    "children": [
+                      {
+                        "id": "1-1-2-1-1-1",
+                        "name": "Workstation 2",
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "1-1-3",
+            "name": "Tablets",
+            "children": [
+              {
+                "id": "1-1-3-1",
+                "name": "2-in-1 Laptops",
+                "children": []
+              },
+              {
+                "id": "1-1-3-2",
+                "name": "Drawing Tablets",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "1-2",
+        "name": "Smartphones",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Home & Garden",
+    "children": [
+      {
+        "id": "2-1",
+        "name": "Furniture",
+        "children": [
+          {
+            "id": "2-1-1",
+            "name": "Living Room",
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
+]

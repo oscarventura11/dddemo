@@ -1,0 +1,18 @@
+# 🛠️ Tech Stack
+
+## Frontend
+- **Framework:** Preact (TypeScript)
+- **Runtime:** Vite
+- **UI Library:** Material UI (MUI)
+- **State Management:** `preact-signals`
+- **DI:** `inversify` + `reflect-metadata`
+
+## Shared Systems
+- **Notifications:** Custom service with MUI Snackbar integration.
+- **Error Management:** Global `ErrorManager` using `NotificationService`.
+
+## Testing
+- **Unit & Integration:** `vitest`
+- **Mocking:** `ts-mockito`
+- **Architecture Testing:** `ts-arch`
+- **E2E:** `cypress`
