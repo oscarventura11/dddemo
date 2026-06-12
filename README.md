@@ -40,6 +40,11 @@ src/
 -   **Arch. Validation**: [tsarch](https://github.com/pksunkara/tsarch)
 
 
+
+### Development Shortcuts (Makefile)
+The project includes a `Makefile` for a streamlined dev environment:
+- `make dev`: Launches a tmux-based development session running the app and tests in parallel.
+
 ### Git Hooks (Husky)
 The project uses Husky to automate development standards:
 - **Pre-commit**: Displays an interactive menu to standardize commit messages (following Conventional Commits).

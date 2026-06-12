@@ -39,3 +39,10 @@ Follow these 5 steps to implement a new feature:
   2. Run the full test suite.
   3. Restore your work.
   This prevents "dirty" local changes from causing false test results.
+
+## 8. Development Environment
+You can quickly bootstrap a complete development environment using:
+```bash
+make dev
+```
+This uses `tmux` to orchestrate multiple windows for the development server and test runner.
