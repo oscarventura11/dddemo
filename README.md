@@ -63,6 +63,10 @@ pnpm install
 
 ### Running the App
 ```bash
+# Optimized dev environment (tmux required)
+make dev
+
+# Standard dev server
 pnpm dev
 ```
 
