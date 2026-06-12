@@ -18,7 +18,7 @@ fi
 echo "--------------------------------------------------"
 echo "  Running tests before push..."
 echo "--------------------------------------------------"
-pnpm test --run
+pnpm test -- --run
 TEST_RESULT=$?
 
 if [ "$STASHED" = true ]; then
