@@ -16,7 +16,7 @@ The project follows a **Hexagonal Architecture** with four distinct layers:
 4.  **Presentation**: UI Components (Dumb) and Containers (Smart).
 
 ### Shared Services
-- **PolicyService**: Role-based access control with whitelist support.
+- **PolicyService**: Role-based access control with whitelist support, backed by a consolidated abstract policy (`ConsolidationPolicy`) and a single implementation.
 - **ErrorManager**: Centralized error handling across the application.
 - **NotificationService**: Unified user feedback system using MUI Snackbars.
 

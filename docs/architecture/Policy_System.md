@@ -8,17 +8,20 @@ The Policy System is organized into three layers:
 
 ### 1. Domain Layer
 - **PolicyAction**: An enum defining all securable actions in the system (e.g., `SUBMIT_CATEGORY_SELECTION`).
-- **PolicyContext**: A data structure containing the information needed to make an authorization decision (User Role, Email, Environment, Feature Flags).
-- **PolicyProvider (Port)**: An abstract class/interface that defines the contract for authorization checks.
+- **ConsolidationPolicyDTO**: A data structure containing the information needed to make an authorization decision (Action, User Role, Email, Environment, Mode, Feature Flags).
+- **ConsolidationPolicy (Port)**: An abstract class that defines the authorization contract and shared helper behavior:
+  - `can(dto)` for policy decisions
+  - `defaultActive(dto)` for default activation logic (`development`, `test`, or `local`)
+  - `development(dto)` helper
+  - `check(dto)` to throw on policy violations
 
 ### 2. Application Layer
-- **PolicyService**: The primary entry point for components to check permissions. It gathers the current context from `PolicyState` and delegates the check to the active `PolicyProvider`.
+- **PolicyService**: The primary entry point for components to check permissions. It gathers context from `PolicyState`, builds a `ConsolidationPolicyDTO`, and delegates the check to `ConsolidationPolicy`.
 - **PolicyState**: A reactive store (using Preact Signals) that holds the current user's role, email, and active feature flags.
 
 ### 3. Infrastructure Layer (Adapters)
-- **DefaultPolicyProvider**: Implements production-grade rules.
-- **DevPolicyProvider**: Implements development-specific rules, often allowing more access or enabling "Under Construction" features via feature flags.
-- **TestPolicyProvider**: A simplified provider for unit and E2E testing.
+- **CategoryConsolidationPolicy**: The single concrete implementation of `ConsolidationPolicy` used by the app.
+- The implementation contains environment-aware behavior through DTO fields (`mode`, `environment`) instead of swapping provider classes.
 
 ## 🚀 Whitelist Feature
 
@@ -46,4 +49,4 @@ The `UserSelector` component allows developers to switch roles or enter a whitel
 The Policy System is fully tested:
 - **State Tests**: Ensure signals update correctly.
 - **Service Tests**: Verify context gathering and delegation.
-- **Provider Tests**: Validate specific authorization logic for different environments.
+- **Consolidated Policy Tests**: Validate authorization logic for roles, whitelist, and environment-aware behavior in a single policy implementation.
