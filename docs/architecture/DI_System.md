@@ -1,18 +1,21 @@
 # 💉 Dependency Injection System
 
 ## InversifyJS
-We use `inversify` as our IoC container. Each feature declares a `*.di.ts` file that exports a `ContainerModule`.
+We use `inversify` as our IoC container. The current app composes dependencies in a central container for the category module and shared services.
 
-## DI Module Structure
+## Current Binding Style
 
 ```typescript
-import { ContainerModule, interfaces } from "inversify";
-import { TYPES } from "./types";
+import { Container } from "inversify";
+import { AppConfigProvider } from ".../config/domain/repositories/AppConfigProvider";
+import { ViteAppConfigProvider } from ".../config/infrastructure/providers/ViteAppConfigProvider";
+import { Policy } from ".../policy/domain/repositories/PolicyProvider";
+import { CategoryPolicy } from ".../policy/infrastructure/providers/CategoryPolicy";
 
-export const InvoicesDIModule = new ContainerModule((bind: interfaces.Bind) => {
-  bind<InvoiceRepository>(TYPES.InvoiceRepository).to(InvoiceHttpRepository).inSingletonScope();
-  bind<InvoiceStateService>(TYPES.InvoiceStateService).to(InvoiceStateService).inSingletonScope();
-});
+const container = new Container();
+
+container.bind<AppConfigProvider>(AppConfigProvider).to(ViteAppConfigProvider).inSingletonScope();
+container.bind<Policy>(Policy).to(CategoryPolicy).inSingletonScope();
 ```
 
 ## Dependency Resolution
@@ -20,19 +23,17 @@ Services resolve dependencies via constructor injection using the `@inject` deco
 
 ```typescript
 @injectable()
-class InvoiceReadService {
+class PolicyState {
   constructor(
-    @inject(TYPES.InvoiceRepository) private _repository: InvoiceRepository,
-    @inject(TYPES.InvoiceStateService) private _stateService: InvoiceStateService
+    @inject(AppConfigProvider) private readonly configProvider: AppConfigProvider
   ) {}
 }
 ```
 
 ## Rules
-- One `*.di.ts` per feature.
-- Bind against **abstract classes** using `TYPES` symbols.
+- Bind against **ports/abstract classes** (`AppConfigProvider`, `Policy`, repositories).
 - Use `inSingletonScope()` for stateful or shared services.
-- In tests: use `Container.rebind()` with `ts-mockito` mocks.
+- In tests: instantiate services with test doubles for ports (for example, test config providers and mocked policies).
 
 ## 🔗 Related
 - [Architecture MOC](./README.md)

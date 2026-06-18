@@ -1,38 +1,39 @@
 import { PolicyAction } from "../models/PolicyAction";
 import { UserRole } from "../models/UserRole";
 
-export type ConsolidationPolicyMode =
+export type PolicyMode =
   | "development"
   | "test"
   | "production"
   | "local";
 
-export type ConsolidationPolicyEnvironment =
+export type PolicyEnvironment =
   | "development"
   | "test"
   | "production"
   | "local";
 
-export interface ConsolidationPolicyDTO<TAction> {
-  action: TAction;
+export interface PolicyDTO<TAction> {
+  action?: TAction;
+  featureKey?: string;
   role: UserRole;
   email?: string;
-  environment: ConsolidationPolicyEnvironment;
-  mode: ConsolidationPolicyMode;
+  environment: PolicyEnvironment;
+  mode: PolicyMode;
   featureFlags?: Record<string, boolean>;
 }
 
-export class ConsolidationPolicyViolationException extends Error {
+export class PolicyViolationException extends Error {
   constructor() {
-    super("Consolidation policy violation");
-    this.name = "ConsolidationPolicyViolationException";
+    super("Policy violation");
+    this.name = "PolicyViolationException";
   }
 }
 
-export abstract class ConsolidationPolicy<TAction = PolicyAction> {
-  abstract can(dto: ConsolidationPolicyDTO<TAction>): boolean;
+export abstract class Policy<TAction = PolicyAction> {
+  abstract can(dto: PolicyDTO<TAction>): boolean;
 
-  public defaultActive(dto: ConsolidationPolicyDTO<TAction>): boolean {
+  public defaultActive(dto: PolicyDTO<TAction>): boolean {
     return (
       this.development(dto) ||
       dto.mode === "test" ||
@@ -40,13 +41,13 @@ export abstract class ConsolidationPolicy<TAction = PolicyAction> {
     );
   }
 
-  public development(dto: ConsolidationPolicyDTO<TAction>): boolean {
+  public development(dto: PolicyDTO<TAction>): boolean {
     return dto.mode === "development";
   }
 
-  public check(dto: ConsolidationPolicyDTO<TAction>): void {
+  public check(dto: PolicyDTO<TAction>): void {
     if (!this.can(dto)) {
-      throw new ConsolidationPolicyViolationException();
+      throw new PolicyViolationException();
     }
   }
 }

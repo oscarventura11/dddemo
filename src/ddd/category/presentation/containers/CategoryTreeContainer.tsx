@@ -26,7 +26,7 @@ export const CategoryTreeContainer = () => {
   const isLoading = state.loading.value;
 
   const canSubmit = policyService.can(PolicyAction.SUBMIT_CATEGORY_SELECTION);
-  const showUnderConstruction = policyService.can(PolicyAction.VIEW_UNDER_CONSTRUCTION_BANNER);
+  const showUnderConstruction = policyService.canFeature("show-under-construction");
 
   const handleSubmit = () => {
     if (!canSubmit) return;

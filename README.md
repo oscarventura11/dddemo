@@ -16,7 +16,8 @@ The project follows a **Hexagonal Architecture** with four distinct layers:
 4.  **Presentation**: UI Components (Dumb) and Containers (Smart).
 
 ### Shared Services
-- **PolicyService**: Role-based access control with whitelist support, backed by a consolidated abstract policy (`ConsolidationPolicy`) and a single implementation.
+- **PolicyService**: Role-based access control with whitelist support, backed by an abstract policy contract (`Policy`) and a single implementation.
+- **AppConfigProvider**: Configuration abstraction for environment and default feature flags.
 - **ErrorManager**: Centralized error handling across the application.
 - **NotificationService**: Unified user feedback system using MUI Snackbars.
 
@@ -33,6 +34,7 @@ src/
 ## 🛠️ Tech Stack
 
 -   **UI Framework**: [Preact](https://preactjs.com/)
+-   **Routing**: [preact-router](https://github.com/preactjs/preact-router)
 -   **State Management**: [Preact Signals](https://preactjs.com/guide/v10/signals)
 -   **Dependency Injection**: [InversifyJS](https://inversify.io/)
 -   **Build Tool**: [Vite](https://vitejs.dev/)

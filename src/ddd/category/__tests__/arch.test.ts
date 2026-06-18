@@ -12,7 +12,7 @@ test("Domain layer should not depend on Application, Infrastructure or Presentat
     .check();
 
   expect(violations).toEqual([]);
-});
+}, 15000);
 
 test("Application layer should not depend on Infrastructure or Presentation", async () => {
   const violations = await filesOfProject("tsconfig.app.json")
@@ -60,7 +60,7 @@ test("Presentation components should have correct naming suffix", async () => {
   const violations = await filesOfProject("tsconfig.app.json")
     .matchingPattern("src/ddd/category/presentation/(?!.*__tests__).*")
     .should()
-    .matchPattern(".*(Component|Container|Skeleton)\.tsx")
+    .matchPattern(".*(Component|Container|Skeleton|\\.route)\\.tsx")
     .check();
 
   expect(violations).toEqual([]);

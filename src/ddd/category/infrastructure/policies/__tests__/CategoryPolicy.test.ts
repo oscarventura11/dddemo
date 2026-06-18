@@ -1,11 +1,11 @@
 import { describe, it, expect } from "vitest";
-import { POLICY_WHITELIST } from "../../../../constants/policy.constants";
-import { PolicyAction } from "../../../domain/models/PolicyAction";
-import { UserRole } from "../../../domain/models/UserRole";
-import { CategoryConsolidationPolicy } from "../CategoryConsolidationPolicy";
+import { POLICY_WHITELIST } from "../../../../shared/constants/policy.constants";
+import { PolicyAction } from "../../../../shared/policy/domain/models/PolicyAction";
+import { UserRole } from "../../../../shared/policy/domain/models/UserRole";
+import { CategoryPolicy } from "../CategoryPolicy";
 
-describe("CategoryConsolidationPolicy", () => {
-  const policy = new CategoryConsolidationPolicy();
+describe("CategoryPolicy", () => {
+  const policy = new CategoryPolicy();
 
   it("allows every action in test mode", () => {
     const dto = {
@@ -52,27 +52,34 @@ describe("CategoryConsolidationPolicy", () => {
     expect(policy.can(dto)).toBe(false);
   });
 
-  it("shows under-construction banner in development when feature flag is enabled", () => {
-    const dto = {
-      action: PolicyAction.VIEW_UNDER_CONSTRUCTION_BANNER,
+  it("evaluates feature checks using featureKey and feature flags", () => {
+    const enabledFeatureDto = {
+      featureKey: "view-about-page",
       role: UserRole.USER,
       environment: "development" as const,
       mode: "development" as const,
-      featureFlags: { "show-under-construction": true },
+      featureFlags: { "view-about-page": true },
     };
 
-    expect(policy.can(dto)).toBe(true);
-  });
-
-  it("hides under-construction banner in production for non-whitelisted users", () => {
-    const dto = {
-      action: PolicyAction.VIEW_UNDER_CONSTRUCTION_BANNER,
+    const enabledFeatureInProductionDto = {
+      featureKey: "view-about-page",
       role: UserRole.ADMIN,
+      email: POLICY_WHITELIST[0],
       environment: "production" as const,
       mode: "production" as const,
-      featureFlags: { "show-under-construction": true },
+      featureFlags: { "view-about-page": true },
     };
 
-    expect(policy.can(dto)).toBe(false);
+    const disabledFeatureDto = {
+      featureKey: "view-about-page",
+      role: UserRole.USER,
+      environment: "development" as const,
+      mode: "development" as const,
+      featureFlags: { "view-about-page": false },
+    };
+
+    expect(policy.can(enabledFeatureDto)).toBe(true);
+    expect(policy.can(enabledFeatureInProductionDto)).toBe(true);
+    expect(policy.can(disabledFeatureDto)).toBe(false);
   });
 });

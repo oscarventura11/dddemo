@@ -8,20 +8,23 @@ The Policy System is organized into three layers:
 
 ### 1. Domain Layer
 - **PolicyAction**: An enum defining all securable actions in the system (e.g., `SUBMIT_CATEGORY_SELECTION`).
-- **ConsolidationPolicyDTO**: A data structure containing the information needed to make an authorization decision (Action, User Role, Email, Environment, Mode, Feature Flags).
-- **ConsolidationPolicy (Port)**: An abstract class that defines the authorization contract and shared helper behavior:
+- **PolicyDTO**: A data structure containing the information needed to make an authorization decision (Action or Feature Key, User Role, Email, Environment, Mode, Feature Flags).
+- **Policy (Port)**: An abstract class that defines the authorization contract and shared helper behavior:
   - `can(dto)` for policy decisions
   - `defaultActive(dto)` for default activation logic (`development`, `test`, or `local`)
   - `development(dto)` helper
   - `check(dto)` to throw on policy violations
 
 ### 2. Application Layer
-- **PolicyService**: The primary entry point for components to check permissions. It gathers context from `PolicyState`, builds a `ConsolidationPolicyDTO`, and delegates the check to `ConsolidationPolicy`.
-- **PolicyState**: A reactive store (using Preact Signals) that holds the current user's role, email, and active feature flags.
+- **PolicyService**: The primary entry point for components to check permissions. It gathers context from `PolicyState`, builds a `PolicyDTO`, and delegates the check to `Policy`.
+  - `can(action)` for action-based authorization.
+  - `canFeature(featureKey)` for feature-flag based checks (used by route guards).
+- **PolicyState**: A reactive store (using Preact Signals) that holds the current user's role, email, current environment, and active feature flags.
 
 ### 3. Infrastructure Layer (Adapters)
-- **CategoryConsolidationPolicy**: The single concrete implementation of `ConsolidationPolicy` used by the app.
-- The implementation contains environment-aware behavior through DTO fields (`mode`, `environment`) instead of swapping provider classes.
+- **CategoryPolicy**: The single concrete implementation of `Policy` used by the app.
+- **ViteAppConfigProvider**: The configuration adapter that resolves environment and default policy feature flags from Vite env.
+- The policy implementation contains environment-aware behavior through DTO fields (`mode`, `environment`) and feature keys instead of swapping provider classes.
 
 ## 🚀 Whitelist Feature
 
@@ -40,6 +43,17 @@ return (
 );
 ```
 
+### Checking a Feature Flag (Route Guard)
+
+```typescript
+const policyService = useInjection<PolicyService>(PolicyService);
+const canViewAbout = policyService.canFeature("view-about-page");
+
+if (!canViewAbout) {
+  route("/", true);
+}
+```
+
 ### Updating User Context (Dev Tools)
 
 The `UserSelector` component allows developers to switch roles or enter a whitelisted email to test different authorization scenarios in real-time.
@@ -49,4 +63,4 @@ The `UserSelector` component allows developers to switch roles or enter a whitel
 The Policy System is fully tested:
 - **State Tests**: Ensure signals update correctly.
 - **Service Tests**: Verify context gathering and delegation.
-- **Consolidated Policy Tests**: Validate authorization logic for roles, whitelist, and environment-aware behavior in a single policy implementation.
+- **Policy Tests**: Validate authorization logic for roles, whitelist, environment-aware behavior, and feature-flag based checks in a single policy implementation.

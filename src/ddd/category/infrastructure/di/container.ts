@@ -13,10 +13,12 @@ import { NotificationService } from "../../../shared/notification/application/se
 import { ErrorManager } from "../../../shared/error/application/services/ErrorManager";
 import { AppErrorManager } from "../../../shared/error/application/services/AppErrorManager";
 
-import { ConsolidationPolicy } from "../../../shared/policy/domain/repositories/PolicyProvider";
-import { CategoryConsolidationPolicy } from "../../../shared/policy/infrastructure/providers/CategoryConsolidationPolicy";
+import { Policy } from "../../../shared/policy/domain/repositories/PolicyProvider";
+import { CategoryPolicy } from "../policies/CategoryPolicy";
 import { PolicyState } from "../../../shared/policy/application/state/PolicyState";
 import { PolicyService } from "../../../shared/policy/application/services/PolicyService";
+import { AppConfigProvider } from "../../../shared/config/domain/repositories/AppConfigProvider";
+import { ViteAppConfigProvider } from "../../../shared/config/infrastructure/providers/ViteAppConfigProvider";
 
 const container = new Container();
 
@@ -52,12 +54,15 @@ container
 // Shared: Error
 container.bind(ErrorManager).to(AppErrorManager).inSingletonScope();
 
+// Shared: Config
+container.bind<AppConfigProvider>(AppConfigProvider).to(ViteAppConfigProvider).inSingletonScope();
+
 // Shared: Policy
 container.bind<PolicyState>(PolicyState).toSelf().inSingletonScope();
 container.bind<PolicyService>(PolicyService).toSelf().inSingletonScope();
 container
-  .bind<ConsolidationPolicy>(ConsolidationPolicy)
-  .to(CategoryConsolidationPolicy)
+  .bind<Policy>(Policy)
+  .to(CategoryPolicy)
   .inSingletonScope();
 
 export { container };
