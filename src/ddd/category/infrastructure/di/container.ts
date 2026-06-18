@@ -13,10 +13,8 @@ import { NotificationService } from "../../../shared/notification/application/se
 import { ErrorManager } from "../../../shared/error/application/services/ErrorManager";
 import { AppErrorManager } from "../../../shared/error/application/services/AppErrorManager";
 
-import { PolicyProvider } from "../../../shared/policy/domain/repositories/PolicyProvider";
-import { DefaultPolicyProvider } from "../../../shared/policy/infrastructure/providers/DefaultPolicyProvider";
-import { DevPolicyProvider } from "../../../shared/policy/infrastructure/providers/DevPolicyProvider";
-import { TestPolicyProvider } from "../../../shared/policy/infrastructure/providers/TestPolicyProvider";
+import { ConsolidationPolicy } from "../../../shared/policy/domain/repositories/PolicyProvider";
+import { CategoryConsolidationPolicy } from "../../../shared/policy/infrastructure/providers/CategoryConsolidationPolicy";
 import { PolicyState } from "../../../shared/policy/application/state/PolicyState";
 import { PolicyService } from "../../../shared/policy/application/services/PolicyService";
 
@@ -57,16 +55,9 @@ container.bind(ErrorManager).to(AppErrorManager).inSingletonScope();
 // Shared: Policy
 container.bind<PolicyState>(PolicyState).toSelf().inSingletonScope();
 container.bind<PolicyService>(PolicyService).toSelf().inSingletonScope();
-
-// Select PolicyProvider based on environment from .env (Vite)
-const env = import.meta.env.VITE_APP_ENV || "development";
-
-if (env === "production") {
-  container.bind(PolicyProvider).to(DefaultPolicyProvider).inSingletonScope();
-} else if (env === "test") {
-  container.bind(PolicyProvider).to(TestPolicyProvider).inSingletonScope();
-} else {
-  container.bind(PolicyProvider).to(DevPolicyProvider).inSingletonScope();
-}
+container
+  .bind<ConsolidationPolicy>(ConsolidationPolicy)
+  .to(CategoryConsolidationPolicy)
+  .inSingletonScope();
 
 export { container };

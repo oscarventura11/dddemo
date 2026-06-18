@@ -2,12 +2,12 @@ import { describe, it, beforeEach, expect } from "vitest";
 import { mock, instance, when, anyOfClass } from "ts-mockito";
 import { PolicyService } from "../PolicyService";
 import { PolicyState } from "../../state/PolicyState";
-import { PolicyProvider } from "../../../domain/repositories/PolicyProvider";
+import { ConsolidationPolicy } from "../../../domain/repositories/PolicyProvider";
 import { PolicyAction } from "../../../domain/models/PolicyAction";
 import { UserRole } from "../../../domain/models/UserRole";
 
-class MockPolicyProvider extends PolicyProvider {
-  can(action: PolicyAction, context: any): boolean {
+class MockPolicyProvider extends ConsolidationPolicy<PolicyAction> {
+  can(dto: any): boolean {
     return false;
   }
 }
@@ -28,7 +28,7 @@ describe("PolicyService", () => {
     state.setEmail("admin@example.com");
 
     when(
-      provider.can(PolicyAction.SUBMIT_CATEGORY_SELECTION, anyOfClass(Object)),
+      provider.can(anyOfClass(Object)),
     ).thenReturn(true);
 
     const result = service.can(PolicyAction.SUBMIT_CATEGORY_SELECTION);
