@@ -16,6 +16,7 @@ The project follows a **Hexagonal Architecture** with four distinct layers:
 4.  **Presentation**: UI Components (Dumb) and Containers (Smart).
 
 ### Shared Services
+- **PolicyService**: Role-based access control with whitelist support.
 - **ErrorManager**: Centralized error handling across the application.
 - **NotificationService**: Unified user feedback system using MUI Snackbars.
 
@@ -85,4 +86,5 @@ Detailed architectural documentation can be found in the [`docs/`](./docs/archit
 -   [Architecture Overview](./docs/architecture/README.md)
 -   [Hexagonal Layers](./docs/architecture/Hexagonal.md)
 -   [Tech Stack Details](./docs/architecture/Tech_Stack.md)
+-   [Policy System (Authorization)](./docs/architecture/Policy_System.md)
 -   [Refactor Plan](./DDD_REFACTOR_PLAN.md)

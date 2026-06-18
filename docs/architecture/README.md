@@ -7,6 +7,7 @@ related:
   - "./Tech_Stack.md"
   - "./State_Management.md"
   - "./DI_System.md"
+  - "./Policy_System.md"
 ---
 
 # 🏗️ Architecture
@@ -20,3 +21,4 @@ Architectural principles and references for the project refactored to TS/Preact.
 - [Tech Stack (TS, Preact, Inversify)](./Tech_Stack.md)
 - [State Management with Signals](./State_Management.md)
 - [Dependency Injection System (InversifyJS)](./DI_System.md)
+- [Policy System (Authorization & RBAC)](./Policy_System.md)
