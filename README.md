@@ -44,7 +44,7 @@ src/
 
 ### Development Shortcuts (Makefile)
 The project includes a `Makefile` for a streamlined dev environment:
-- `make dev`: Launches a tmux-based development session running the app and tests in parallel.
+- `make dev`: Launches a tmux-based development session running the app, unit tests, and E2E tests in parallel.
 
 ### Git Hooks (Husky)
 The project uses Husky to automate development standards:
