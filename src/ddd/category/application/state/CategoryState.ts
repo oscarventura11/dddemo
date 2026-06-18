@@ -5,8 +5,12 @@ import { CategorySelected } from "../../domain/entities/CategorySelected";
 
 @injectable()
 export class CategoryState {
-  private readonly _categories = signal<CategoryCollection>(CategoryCollection.create([]));
-  private readonly _selected = signal<CategorySelected>(CategorySelected.empty());
+  private readonly _categories = signal<CategoryCollection>(
+    CategoryCollection.empty(),
+  );
+  private readonly _selected = signal<CategorySelected>(
+    CategorySelected.empty(),
+  );
   private readonly _loading = signal<boolean>(false);
 
   public get categories(): Signal<CategoryCollection> {

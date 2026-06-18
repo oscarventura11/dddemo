@@ -1,4 +1,4 @@
-import { Category } from './Category';
+import { Category } from "./Category";
 
 export class CategoryCollection {
   constructor(private readonly _items: Category[]) {}
@@ -13,5 +13,9 @@ export class CategoryCollection {
 
   public count(): number {
     return this._items.length;
+  }
+
+  public static empty(): CategoryCollection {
+    return CategoryCollection.create([]);
   }
 }

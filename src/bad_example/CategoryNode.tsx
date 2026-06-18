@@ -18,7 +18,7 @@ export const CategoryNode = ({
   handleToggle,
 }: any) => {
   const [open, setOpen] = useState(false);
-  const hasChildren = node.children && node.children.length > 0 && level < 5;
+  const hasChildren = node.children && node.children.length > 0 && level < 6;
 
   return (
     <>

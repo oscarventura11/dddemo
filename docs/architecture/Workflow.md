@@ -55,5 +55,3 @@ make dev
 ```
 
 This uses `tmux` to orchestrate multiple windows for the development server and test runner.
-
-hola

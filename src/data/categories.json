@@ -36,7 +36,13 @@
                       {
                         "id": "1-1-2-1-1-1",
                         "name": "Workstation 2",
-                        "children": []
+                        "children": [
+                          {
+                            "id": "1-1-2-1-1-1-1",
+                            "name": "Workstation 2.1",
+                            "children": []
+                          }
+                        ]
                       }
                     ]
                   }
@@ -80,7 +86,13 @@
           {
             "id": "2-1-1",
             "name": "Living Room",
-            "children": []
+            "children": [
+              {
+                "id": "2-1-1-1",
+                "name": "Bedroom",
+                "children": []
+              }
+            ]
           }
         ]
       }
