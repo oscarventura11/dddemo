@@ -1,0 +1,33 @@
+{
+  "name": "dddemo",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:24",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "ms-playwright.playwright",
+        "vitest.explorer",
+        "dbaeumer.vscode-eslint",
+        "usernamehw.errorlens",
+        "eamodio.gitlens",
+        "claude-code.claude-code"
+      ],
+      "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "prettier.semi": true,
+        "prettier.singleQuote": false,
+        "typescript.tsdk": "node_modules/typescript/lib"
+      }
+    }
+  },
+  "forwardPorts": [5173],
+  "portsAttributes": {
+    "5173": {
+      "label": "Vite Dev Server",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y tmux && corepack enable && corepack prepare pnpm@latest --activate && pnpm install && pnpm exec playwright install --with-deps chromium",
+  "remoteUser": "node"
+}
