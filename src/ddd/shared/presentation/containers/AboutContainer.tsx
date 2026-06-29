@@ -17,7 +17,7 @@ export function AboutContainer() {
             guards route access for development-only pages.
           </Typography>
           <Box>
-            <Link href="/">
+            <Link path="/">
               <Button variant="contained">Back to Home</Button>
             </Link>
           </Box>

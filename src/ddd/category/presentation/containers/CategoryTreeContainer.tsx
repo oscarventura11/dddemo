@@ -1,15 +1,15 @@
-import { useEffect } from 'preact/hooks';
-import { List, Paper, Typography, Box, Button } from '@mui/material';
-import { useInjection } from '../../../shared/presentation/hooks/useInjection';
-import { CategoryReadService } from '../../application/services/CategoryReadService';
-import { CategoryWriteService } from '../../application/services/CategoryWriteService';
-import { CategoryState } from '../../application/state/CategoryState';
-import { CategoryComponent } from '../components/CategoryComponent';
-import { CategorySkeleton } from '../components/CategorySkeleton';
-import { NotificationDisplay } from '../../../shared/presentation/components/NotificationDisplay';
-import { UserSelector } from '../../../shared/presentation/components/UserSelector';
-import { PolicyService } from '../../../shared/policy/application/services/PolicyService';
-import { PolicyAction } from '../../../shared/policy/domain/models/PolicyAction';
+import { useEffect } from "preact/hooks";
+import { List, Paper, Typography, Box, Button } from "@mui/material";
+import { useInjection } from "../../../shared/presentation/hooks/useInjection";
+import { CategoryReadService } from "../../application/services/CategoryReadService";
+import { CategoryWriteService } from "../../application/services/CategoryWriteService";
+import { CategoryState } from "../../application/state/CategoryState";
+import { CategoryComponent } from "../components/CategoryComponent";
+import { CategorySkeleton } from "../components/CategorySkeleton";
+import { NotificationDisplay } from "../../../shared/presentation/components/NotificationDisplay";
+import { UserSelector } from "../../../shared/presentation/components/UserSelector";
+import { PolicyService } from "../../../shared/policy/application/services/PolicyService";
+import { PolicyAction } from "../../../shared/policy/domain/models/PolicyAction";
 
 export const CategoryTreeContainer = () => {
   const readService = useInjection<CategoryReadService>(CategoryReadService);
@@ -26,7 +26,9 @@ export const CategoryTreeContainer = () => {
   const isLoading = state.loading.value;
 
   const canSubmit = policyService.can(PolicyAction.SUBMIT_CATEGORY_SELECTION);
-  const showUnderConstruction = policyService.canFeature("show-under-construction");
+  const showUnderConstruction = policyService.canFeature(
+    "show-under-construction",
+  );
 
   const handleSubmit = () => {
     if (!canSubmit) return;
@@ -34,26 +36,42 @@ export const CategoryTreeContainer = () => {
   };
 
   return (
-    <Box sx={{ p: 3, maxWidth: 400, mx: 'auto', width: '100%' }}>
-      <Typography variant='h4' gutterBottom>Category Tree (DDD)</Typography>
-      
-      {showUnderConstruction && (
-        <Typography variant='body2' sx={{ color: 'error.main', fontWeight: 'bold', mb: 2, textAlign: 'center' }}>
+    <Box sx={{ p: 3, maxWidth: 400, mx: "auto", width: "100%" }}>
+      <Typography variant="h4" gutterBottom>
+        Category Tree (DDD)
+      </Typography>
+
+      {showUnderConstruction ? (
+        <Typography
+          variant="body2"
+          sx={{
+            color: "error.main",
+            fontWeight: "bold",
+            mb: 2,
+            textAlign: "center",
+          }}
+        >
           ⚠️ UNDER CONSTRUCTION - DEV ONLY ⚠️
         </Typography>
-      )}
+      ) : null}
 
       <UserSelector />
 
       <Box sx={{ mb: 2 }}>
-        <Button 
-          variant='contained' 
-          color='primary' 
-          fullWidth 
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth
           onClick={handleSubmit}
-          disabled={isLoading || selected.selectedIds.length === 0 || !canSubmit}
+          disabled={
+            isLoading || selected.selectedIds.length === 0 || !canSubmit
+          }
         >
-          {isLoading ? 'Submitting...' : canSubmit ? 'Submit Selection' : 'Admin Only'}
+          {isLoading
+            ? "Submitting..."
+            : canSubmit
+              ? "Submit Selection"
+              : "Admin Only"}
         </Button>
       </Box>
 

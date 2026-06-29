@@ -27,10 +27,10 @@ export const UserSelector = () => {
 
   return (
     <Box sx={{ mb: 3, p: 2, border: "1px dashed grey", borderRadius: 1 }}>
-      <Typography variant="caption" display="block" gutterBottom>
+      <Typography variant="caption" sx={{ display: "block" }} gutterBottom>
         [Dev Tools] User Context
       </Typography>
-      
+
       <FormControl fullWidth size="small" sx={{ mb: 2 }}>
         <InputLabel id="role-select-label">Role</InputLabel>
         <Select
@@ -55,7 +55,10 @@ export const UserSelector = () => {
         placeholder="e.g. allowed@domain.com"
       />
       {currentEmail && (
-        <Typography variant="caption" sx={{ mt: 1, display: "block", color: "text.secondary" }}>
+        <Typography
+          variant="caption"
+          sx={{ mt: 1, display: "block", color: "text.secondary" }}
+        >
           Whitelist includes: {POLICY_WHITELIST.join(", ")}
         </Typography>
       )}
