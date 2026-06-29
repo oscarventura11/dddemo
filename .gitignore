@@ -10,3 +10,5 @@ pnpm-debug.log*
 .features-gen/
 playwright-report/
 test-results/
+.pnpm-store/
+pnpm-store/
