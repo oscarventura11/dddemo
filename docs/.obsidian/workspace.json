@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "knowledge/202606301030-what-is-zettelkasten.md",
+                "file": "knowledge/202606300900-ddd-refactor-rationale.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "202606301030-what-is-zettelkasten"
+              "title": "202606300900-ddd-refactor-rationale"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "knowledge/202606301030-what-is-zettelkasten.md",
+                "file": "knowledge/202606300900-ddd-refactor-rationale.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Retroenllaços per a 202606301030-what-is-zettelkasten"
+              "title": "Retroenllaços per a 202606300900-ddd-refactor-rationale"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "knowledge/202606301030-what-is-zettelkasten.md",
+                "file": "knowledge/202606300900-ddd-refactor-rationale.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Enllaços sortints de 202606301030-what-is-zettelkasten"
+              "title": "Enllaços sortints de 202606300900-ddd-refactor-rationale"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "knowledge/202606301030-what-is-zettelkasten.md",
+                "file": "knowledge/202606300900-ddd-refactor-rationale.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Esquema de 202606301030-what-is-zettelkasten"
+              "title": "Esquema de 202606300900-ddd-refactor-rationale"
             }
           }
         ]
@@ -186,13 +186,13 @@
   "active": "c16c5fba82a091ee",
   "lastOpenFiles": [
     "knowledge/202606301030-what-is-zettelkasten.md",
+    "knowledge/Zettelkasten_Obsidian_MCP.md",
     "architecture/Policy_System.md",
     "architecture/State_Management.md",
     "architecture/README.md",
     "architecture/Patterns.md",
     "architecture/Hexagonal.md",
     "knowledge/202606300900-ddd-refactor-rationale.md",
-    "knowledge/Zettelkasten_Obsidian_MCP.md",
     "architecture/Category.md",
     "architecture/Shared.md",
     "architecture/DI_System.md",
