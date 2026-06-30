@@ -1,0 +1,193 @@
+{
+  "main": {
+    "id": "0397043695e233a6",
+    "type": "split",
+    "children": [
+      {
+        "id": "766c5548fe16a745",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c16c5fba82a091ee",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "architecture/Category.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Category"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "0cb350e5c69718e5",
+    "type": "split",
+    "children": [
+      {
+        "id": "a2b46b73b40972fa",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9fa59d36ac597538",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorador de fitxers"
+            }
+          },
+          {
+            "id": "cf787610a754e79b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Cerca"
+            }
+          },
+          {
+            "id": "c0dbd1b81555c3a6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Marcadors"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "43848b16d97628fe",
+    "type": "split",
+    "children": [
+      {
+        "id": "cdd20f4abcc35fed",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "42788d82300ffb46",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "architecture/Category.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Retroenllaços per a Category"
+            }
+          },
+          {
+            "id": "59c47e635929db5c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "architecture/Category.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Enllaços sortints de Category"
+            }
+          },
+          {
+            "id": "5c2a3868bf0a1b1e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etiquetes"
+            }
+          },
+          {
+            "id": "4533b5353aa302e6",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Totes les propietats"
+            }
+          },
+          {
+            "id": "4d4bc5fe9e14e7d8",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "architecture/Category.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Esquema de Category"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Obre el selector ràpid": false,
+      "graph:Obre la vista gràfica": false,
+      "canvas:Crea un llenç nou": false,
+      "daily-notes:Obre la nota d'avui": false,
+      "templates:Inserir plantilla": false,
+      "command-palette:Obre la paleta d'ordres": false,
+      "bases:Crea una base nova": false
+    }
+  },
+  "active": "c16c5fba82a091ee",
+  "lastOpenFiles": [
+    "architecture/Shared.md",
+    "architecture/Category.md",
+    "architecture/Hexagonal.md",
+    "knowledge/Zettelkasten_Obsidian_MCP.md"
+  ]
+}

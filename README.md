@@ -101,6 +101,18 @@ pnpm dev
 
 In containerized environments, the dev server is configured to bind on `0.0.0.0` so it is reachable from your host browser through forwarded port `5173`.
 
+### Knowledge Management (Zettelkasten)
+
+This repository includes an Obsidian-ready vault in `notes/` with templates and a timestamp-based note workflow.
+
+```bash
+# Create a note: pnpm zettel:new <folder> "Title"
+pnpm zettel:new permanent "Policy decisions should be explicit"
+pnpm zettel:new literature "Hexagonal architecture article notes"
+```
+
+Available folders: `inbox`, `fleeting`, `literature`, `permanent`, `structure`, `project`.
+
 ### Running Tests
 
 ```bash
@@ -121,4 +133,5 @@ Detailed architectural documentation can be found in the [`docs/`](./docs/archit
 - [Hexagonal Layers](./docs/architecture/Hexagonal.md)
 - [Tech Stack Details](./docs/architecture/Tech_Stack.md)
 - [Policy System (Authorization)](./docs/architecture/Policy_System.md)
+- [Zettelkasten + Obsidian MCP Setup](./docs/knowledge/Zettelkasten_Obsidian_MCP.md)
 - [Refactor Plan](./DDD_REFACTOR_PLAN.md)

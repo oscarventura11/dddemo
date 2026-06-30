@@ -1,0 +1,183 @@
+{
+  "main": {
+    "id": "7ee2b25529cc1be4",
+    "type": "split",
+    "children": [
+      {
+        "id": "a3b3fd9485c50e00",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "17c56166b9aeae43",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Vista gràfica"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "b6ff1119655cf059",
+    "type": "split",
+    "children": [
+      {
+        "id": "4f9b1db53ac9a2da",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ef5ea4d97517ab4f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorador de fitxers"
+            }
+          },
+          {
+            "id": "41d6c0ad1ba9760f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Cerca"
+            }
+          },
+          {
+            "id": "69885b18c7697b92",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Marcadors"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "ec3f98d71a12e041",
+    "type": "split",
+    "children": [
+      {
+        "id": "2993cb32b0aeaed8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c58a7e60d3b16e86",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Retroenllaços"
+            }
+          },
+          {
+            "id": "c8c3c55f779e31ed",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Enllaços sortints"
+            }
+          },
+          {
+            "id": "1ded88c49a856c29",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etiquetes"
+            }
+          },
+          {
+            "id": "d70597960da37aa4",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Totes les propietats"
+            }
+          },
+          {
+            "id": "6a2b9760910f3ca6",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Esquema"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Obre el selector ràpid": false,
+      "graph:Obre la vista gràfica": false,
+      "canvas:Crea un llenç nou": false,
+      "daily-notes:Obre la nota d'avui": false,
+      "templates:Inserir plantilla": false,
+      "command-palette:Obre la paleta d'ordres": false,
+      "bases:Crea una base nova": false
+    }
+  },
+  "active": "17c56166b9aeae43",
+  "lastOpenFiles": [
+    "docs/architecture/DI_System.md"
+  ]
+}
