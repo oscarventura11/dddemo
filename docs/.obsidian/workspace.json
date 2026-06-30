@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "knowledge/Zettelkasten_Obsidian_MCP.md",
+                "file": "architecture/Policy_System.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Zettelkasten_Obsidian_MCP"
+              "title": "Policy_System"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "knowledge/Zettelkasten_Obsidian_MCP.md",
+                "file": "architecture/Policy_System.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Retroenllaços per a Zettelkasten_Obsidian_MCP"
+              "title": "Retroenllaços per a Policy_System"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "knowledge/Zettelkasten_Obsidian_MCP.md",
+                "file": "architecture/Policy_System.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Enllaços sortints de Zettelkasten_Obsidian_MCP"
+              "title": "Enllaços sortints de Policy_System"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "knowledge/Zettelkasten_Obsidian_MCP.md",
+                "file": "architecture/Policy_System.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Esquema de Zettelkasten_Obsidian_MCP"
+              "title": "Esquema de Policy_System"
             }
           }
         ]
@@ -185,12 +185,16 @@
   },
   "active": "c16c5fba82a091ee",
   "lastOpenFiles": [
-    "architecture/DI_System.md",
+    "architecture/State_Management.md",
+    "architecture/README.md",
+    "architecture/Policy_System.md",
+    "architecture/Patterns.md",
+    "architecture/Hexagonal.md",
+    "knowledge/202606300900-ddd-refactor-rationale.md",
     "knowledge/Zettelkasten_Obsidian_MCP.md",
     "architecture/Category.md",
-    "architecture/Tech_Stack.md",
-    "architecture/Patterns.md",
     "architecture/Shared.md",
-    "architecture/Hexagonal.md"
+    "architecture/DI_System.md",
+    "architecture/Tech_Stack.md"
   ]
 }

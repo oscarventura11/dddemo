@@ -28,3 +28,7 @@ Architectural principles and references for the project refactored to TS/Preact.
 
 - [Category Module](./Category.md)
 - [Shared Kernel](./Shared.md)
+
+## Related knowledge
+
+- [DDD Refactor Rationale](../knowledge/202606300900-ddd-refactor-rationale.md)
