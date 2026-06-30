@@ -14,14 +14,14 @@ After implementing, modifying, or deleting any feature in `src/ddd/`, you **must
 
 ### Which doc to update
 
-| Change area | Doc to update |
-|---|---|
-| `category/` domain, application, infra, or presentation | `docs/architecture/Category.md` |
-| `shared/policy/` or authorization logic | `docs/architecture/Policy_System.md` |
-| `shared/notification/` or `shared/error/` | `docs/architecture/Shared.md` |
-| `shared/config/` | `docs/architecture/Shared.md` |
-| Cross-cutting architecture change | `docs/architecture/Hexagonal.md` and `docs/architecture/README.md` |
-| DI bindings in `container.ts` | `docs/architecture/DI_System.md` |
+| Change area                                             | Doc to update                                                      |
+| ------------------------------------------------------- | ------------------------------------------------------------------ |
+| `category/` domain, application, infra, or presentation | `docs/architecture/Category.md`                                    |
+| `shared/policy/` or authorization logic                 | `docs/architecture/Policy_System.md`                               |
+| `shared/notification/` or `shared/error/`               | `docs/architecture/Shared.md`                                      |
+| `shared/config/`                                        | `docs/architecture/Shared.md`                                      |
+| Cross-cutting architecture change                       | `docs/architecture/Hexagonal.md` and `docs/architecture/README.md` |
+| DI bindings in `container.ts`                           | `docs/architecture/DI_System.md`                                   |
 
 ### Rules
 

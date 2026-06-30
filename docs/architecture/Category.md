@@ -31,16 +31,16 @@ Base abstract class for tree nodes. Uses the **Composite pattern**:
 - `CategoryLeaf` — a node with no children.
 - `CategoryBranch` — a node with children; wires parent references on construction.
 
-| Method | Description |
-|---|---|
+| Method                                                     | Description                                                                                        |
+| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `Category.create(id, name, children, hasChildrenInSource)` | Factory; returns a `CategoryBranch` when children exist or are hinted, otherwise a `CategoryLeaf`. |
-| `Category.empty()` | Returns a sentinel leaf with an empty `CategoryId`. |
-| `isEmpty()` | True when the node has an empty `CategoryId`. |
-| `isLeaf()` | Abstract; implemented differently in leaf vs branch. |
-| `isRoot()` | True when `_parent` is `null`. |
-| `getAllDescendantIds()` | Recursively collects all descendant `CategoryId` values. |
-| `getAllAncestorIds()` | Walks `_parent` chain and collects `CategoryId` values. |
-| `updateChildren(children)` | Abstract; returns a new node with replaced children. |
+| `Category.empty()`                                         | Returns a sentinel leaf with an empty `CategoryId`.                                                |
+| `isEmpty()`                                                | True when the node has an empty `CategoryId`.                                                      |
+| `isLeaf()`                                                 | Abstract; implemented differently in leaf vs branch.                                               |
+| `isRoot()`                                                 | True when `_parent` is `null`.                                                                     |
+| `getAllDescendantIds()`                                    | Recursively collects all descendant `CategoryId` values.                                           |
+| `getAllAncestorIds()`                                      | Walks `_parent` chain and collects `CategoryId` values.                                            |
+| `updateChildren(children)`                                 | Abstract; returns a new node with replaced children.                                               |
 
 ---
 
@@ -50,12 +50,12 @@ Base abstract class for tree nodes. Uses the **Composite pattern**:
 
 Immutable wrapper around a `Category[]` list. Returned by the repository and stored in `CategoryState`.
 
-| Method | Description |
-|---|---|
-| `CategoryCollection.create(items)` | Factory. |
-| `CategoryCollection.empty()` | Returns an empty collection. |
-| `items` | Defensive copy of the internal array. |
-| `count()` | Number of root-level items. |
+| Method                             | Description                           |
+| ---------------------------------- | ------------------------------------- |
+| `CategoryCollection.create(items)` | Factory.                              |
+| `CategoryCollection.empty()`       | Returns an empty collection.          |
+| `items`                            | Defensive copy of the internal array. |
+| `count()`                          | Number of root-level items.           |
 
 ---
 
@@ -67,20 +67,20 @@ Immutable selection state. All selection mutations return a **new** `CategorySel
 
 #### Selection rules encoded here
 
-| Rule | Trigger | Effect |
-|---|---|---|
-| Select parent | `select(branch)` | All descendants are selected recursively. |
-| Auto-select parent | After selecting a child | If all siblings are selected, the parent is selected automatically. |
-| Deselect parent | `deselect(branch)` | All descendants are deselected recursively. |
-| Auto-deselect ancestor | After deselecting a child | All ancestor nodes are deselected. |
+| Rule                   | Trigger                   | Effect                                                              |
+| ---------------------- | ------------------------- | ------------------------------------------------------------------- |
+| Select parent          | `select(branch)`          | All descendants are selected recursively.                           |
+| Auto-select parent     | After selecting a child   | If all siblings are selected, the parent is selected automatically. |
+| Deselect parent        | `deselect(branch)`        | All descendants are deselected recursively.                         |
+| Auto-deselect ancestor | After deselecting a child | All ancestor nodes are deselected.                                  |
 
-| Method | Description |
-|---|---|
-| `toggle(category)` | Selects or deselects based on current state. |
-| `select(category)` | Selects the node and all descendants; promotes ancestors when fully covered. |
-| `deselect(category)` | Deselects the node and all descendants; demotes all ancestors. |
-| `isSelected(id)` | True when the given `CategoryId` is in the selection set. |
-| `selectedIds` | Defensive copy of the `CategoryId[]` list. |
+| Method               | Description                                                                  |
+| -------------------- | ---------------------------------------------------------------------------- |
+| `toggle(category)`   | Selects or deselects based on current state.                                 |
+| `select(category)`   | Selects the node and all descendants; promotes ancestors when fully covered. |
+| `deselect(category)` | Deselects the node and all descendants; demotes all ancestors.               |
+| `isSelected(id)`     | True when the given `CategoryId` is in the selection set.                    |
+| `selectedIds`        | Defensive copy of the `CategoryId[]` list.                                   |
 
 ---
 
@@ -106,10 +106,10 @@ Immutable string wrapper for the display name. Same empty/null-object pattern as
 
 Abstract class defining the persistence contract.
 
-| Method | Description |
-|---|---|
-| `findAll(parentId?)` | Returns root categories when called with no argument; returns children of `parentId` when provided. |
-| `saveSelection(selection)` | Persists the current `CategorySelected` snapshot. |
+| Method                     | Description                                                                                         |
+| -------------------------- | --------------------------------------------------------------------------------------------------- |
+| `findAll(parentId?)`       | Returns root categories when called with no argument; returns children of `parentId` when provided. |
+| `saveSelection(selection)` | Persists the current `CategorySelected` snapshot.                                                   |
 
 ---
 
@@ -121,11 +121,11 @@ Abstract class defining the persistence contract.
 
 Reactive store using **Preact Signals**. The single source of truth for UI-consumed state.
 
-| Signal | Type | Description |
-|---|---|---|
-| `categories` | `Signal<CategoryCollection>` | Current loaded tree. |
-| `selected` | `Signal<CategorySelected>` | Current selection snapshot. |
-| `loading` | `Signal<boolean>` | True while an async operation is in flight. |
+| Signal       | Type                         | Description                                 |
+| ------------ | ---------------------------- | ------------------------------------------- |
+| `categories` | `Signal<CategoryCollection>` | Current loaded tree.                        |
+| `selected`   | `Signal<CategorySelected>`   | Current selection snapshot.                 |
+| `loading`    | `Signal<boolean>`            | True while an async operation is in flight. |
 
 Mutations are gated through `setCategories`, `setSelected`, and `setLoading`. Only the services should call these.
 
@@ -137,9 +137,9 @@ Mutations are gated through `setCategories`, `setSelected`, and `setLoading`. On
 
 Handles queries (CQRS read side).
 
-| Method | Description |
-|---|---|
-| `load()` | Fetches root categories from the repository, sets them in `CategoryState`, wraps errors via `ErrorManager`. |
+| Method               | Description                                                                                                                                                                                              |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `load()`             | Fetches root categories from the repository, sets them in `CategoryState`, wraps errors via `ErrorManager`.                                                                                              |
 | `expand(categoryId)` | Fetches children for an already-loaded node. Merges them into the existing tree immutably. If the expanded node was selected, triggers a re-select to propagate selection down to newly loaded children. |
 
 ---
@@ -150,10 +150,10 @@ Handles queries (CQRS read side).
 
 Handles commands (CQRS write side).
 
-| Method | Description |
-|---|---|
-| `toggle(categoryId)` | Finds the category in the current tree and toggles selection via `CategorySelected.toggle()`. Updates state. |
-| `submit()` | Saves the current selection to the repository. Shows a success notification via `NotificationService` or routes errors to `ErrorManager`. |
+| Method               | Description                                                                                                                               |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `toggle(categoryId)` | Finds the category in the current tree and toggles selection via `CategorySelected.toggle()`. Updates state.                              |
+| `submit()`           | Saves the current selection to the repository. Shows a success notification via `NotificationService` or routes errors to `ErrorManager`. |
 
 ---
 
@@ -177,10 +177,10 @@ In-memory implementation of `CategoryRepository` backed by `src/data/categories.
 
 Stateless translator between raw JSON and domain objects.
 
-| Method | Description |
-|---|---|
+| Method                                  | Description                                                                                                                                                         |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `toDomain(raw, maxDepth, currentDepth)` | Recursively maps JSON to `Category`. Stops recursing at `maxDepth`; passes `hasChildrenInSource=true` so branch nodes are created even when children are truncated. |
-| `toSelectionJSON(selected)` | Returns the selected IDs as a `string[]` for serialization. |
+| `toSelectionJSON(selected)`             | Returns the selected IDs as a `string[]` for serialization.                                                                                                         |
 
 ---
 
@@ -205,20 +205,20 @@ Concrete `Policy` implementation for the category domain. Evaluation order:
 
 Inversify bindings for the entire application. All services are **singleton-scoped**.
 
-| Token | Implementation |
-|---|---|
-| `CategoryRepository` | `FakeCategoryRepository` |
-| `CategoryState` | `CategoryState` (self) |
-| `CategoryReadService` | `CategoryReadService` (self) |
-| `CategoryWriteService` | `CategoryWriteService` (self) |
+| Token                    | Implementation                |
+| ------------------------ | ----------------------------- |
+| `CategoryRepository`     | `FakeCategoryRepository`      |
+| `CategoryState`          | `CategoryState` (self)        |
+| `CategoryReadService`    | `CategoryReadService` (self)  |
+| `CategoryWriteService`   | `CategoryWriteService` (self) |
 | `NotificationRepository` | `LocalNotificationRepository` |
-| `NotificationState` | `NotificationState` (self) |
-| `NotificationService` | `NotificationService` (self) |
-| `ErrorManager` | `AppErrorManager` |
-| `AppConfigProvider` | `ViteAppConfigProvider` |
-| `PolicyState` | `PolicyState` (self) |
-| `PolicyService` | `PolicyService` (self) |
-| `Policy` | `CategoryPolicy` |
+| `NotificationState`      | `NotificationState` (self)    |
+| `NotificationService`    | `NotificationService` (self)  |
+| `ErrorManager`           | `AppErrorManager`             |
+| `AppConfigProvider`      | `ViteAppConfigProvider`       |
+| `PolicyState`            | `PolicyState` (self)          |
+| `PolicyService`          | `PolicyService` (self)        |
+| `Policy`                 | `CategoryPolicy`              |
 
 ---
 

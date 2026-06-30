@@ -23,11 +23,11 @@ The shared kernel contains cross-cutting services that all feature modules consu
 
 Application-layer service for dispatching user-visible feedback.
 
-| Method | Description |
-|---|---|
-| `success(message)` | Creates a `SUCCESS` notification and broadcasts it. |
-| `error(message)` | Creates an `ERROR` notification and broadcasts it. |
-| `clear()` | Clears the active notification from `NotificationState`. |
+| Method             | Description                                              |
+| ------------------ | -------------------------------------------------------- |
+| `success(message)` | Creates a `SUCCESS` notification and broadcasts it.      |
+| `error(message)`   | Creates an `ERROR` notification and broadcasts it.       |
+| `clear()`          | Clears the active notification from `NotificationState`. |
 
 Internally builds a `Notification` value object, calls `NotificationRepository.notify()` (side-effect adapter), and sets it on `NotificationState` (signal).
 
@@ -89,12 +89,12 @@ See [Policy System](./Policy_System.md) for full documentation.
 
 ### Summary
 
-| Class | Layer | Description |
-|---|---|---|
-| `PolicyAction` | Domain | Enum of securable actions (e.g. `SUBMIT_CATEGORY_SELECTION`). |
-| `Policy` | Domain (port) | Abstract base with `can(dto)`, `check(dto)`, `defaultActive(dto)` helpers. |
-| `PolicyState` | Application | Reactive store for role, email, environment, and feature flags. |
-| `PolicyService` | Application | Entry point for containers. Builds `PolicyDTO` from `PolicyState` and delegates to `Policy`. |
+| Class           | Layer         | Description                                                                                  |
+| --------------- | ------------- | -------------------------------------------------------------------------------------------- |
+| `PolicyAction`  | Domain        | Enum of securable actions (e.g. `SUBMIT_CATEGORY_SELECTION`).                                |
+| `Policy`        | Domain (port) | Abstract base with `can(dto)`, `check(dto)`, `defaultActive(dto)` helpers.                   |
+| `PolicyState`   | Application   | Reactive store for role, email, environment, and feature flags.                              |
+| `PolicyService` | Application   | Entry point for containers. Builds `PolicyDTO` from `PolicyState` and delegates to `Policy`. |
 
 ---
 
