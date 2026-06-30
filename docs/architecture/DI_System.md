@@ -1,7 +1,14 @@
 # 💉 Dependency Injection System
 
 ## InversifyJS
-We use `inversify` as our IoC container. The current app composes dependencies in a central container for the category module and shared services.
+
+The project uses `inversify` with a centralized container and constructor injection.
+
+## Pattern Summary
+
+- A centralized DI container binds ports/abstractions to concrete implementations.
+- Application services and state classes use constructor injection with `@injectable()` and `@inject(...)`.
+- Presentation containers resolve runtime dependencies through `useInjection<T>(token)`, which delegates to `container.get(token)`.
 
 ## Current Binding Style
 
@@ -19,7 +26,7 @@ container.bind<Policy>(Policy).to(CategoryPolicy).inSingletonScope();
 ```
 
 ## Dependency Resolution
-Services resolve dependencies via constructor injection using the `@inject` decorator:
+Services resolve dependencies via constructor injection using `@inject`:
 
 ```typescript
 @injectable()
@@ -30,9 +37,18 @@ class PolicyState {
 }
 ```
 
+Presentation resolves services through a thin hook over the shared container:
+
+```typescript
+export function useInjection<T>(token: any): T {
+  return container.get<T>(token);
+}
+```
+
 ## Rules
 - Bind against **ports/abstract classes** (`AppConfigProvider`, `Policy`, repositories).
 - Use `inSingletonScope()` for stateful or shared services.
+- Keep concrete infrastructure imports in the DI container composition root.
 - In tests: instantiate services with test doubles for ports (for example, test config providers and mocked policies).
 
 ## 🔗 Related

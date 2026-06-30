@@ -222,6 +222,9 @@ Concrete `Policy` implementation for the category domain. Evaluation order:
 
 Inversify bindings for the entire application. All services are **singleton-scoped**.
 
+- Application/state classes use constructor injection with `@injectable()` and `@inject(...)`.
+- Presentation containers resolve dependencies through `useInjection<T>(token)`.
+
 | Token                    | Implementation                |
 | ------------------------ | ----------------------------- |
 | `CategoryRepository`     | `FakeCategoryRepository`      |
