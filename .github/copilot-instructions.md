@@ -30,3 +30,5 @@ After implementing, modifying, or deleting any feature in `src/ddd/`, you **must
 3. Update the relevant doc in the same commit as the code change.
 4. If a new shared service is introduced, add it to `docs/architecture/Shared.md` and link it from `docs/architecture/README.md`.
 5. If a new feature module is introduced under `src/ddd/`, create a new doc file in `docs/architecture/` and link it from `docs/architecture/README.md`.
+6. For every feature implemented or modified in `src/ddd/`, review `docs/architecture/Patterns.md` and verify that Domain, Application, Infrastructure, and Presentation layers follow the documented pattern rules.
+7. If the implementation changes how a documented pattern is applied, update `docs/architecture/Patterns.md` in the same commit.

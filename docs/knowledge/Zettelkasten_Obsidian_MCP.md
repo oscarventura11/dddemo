@@ -1,12 +1,12 @@
 # Zettelkasten + Obsidian MCP Setup
 
-This guide wires your project vault in `notes/` to an MCP-compatible AI client.
+This guide wires your project vault in `docs/` to an MCP-compatible AI client.
 
-## 1) Use `notes/` as your Obsidian vault
+## 1) Use `docs/` as your Obsidian vault
 
 1. Open Obsidian.
 2. Select **Open folder as vault**.
-3. Choose the `notes/` directory in this repository.
+3. Choose the `docs/` directory in this repository.
 
 ## 2) Keep note IDs stable
 
@@ -19,9 +19,13 @@ This keeps wiki-links and MCP references stable over time.
 ## 3) Create notes quickly from terminal
 
 ```bash
-chmod +x scripts/new-zettel.sh
-./scripts/new-zettel.sh permanent "Policy decisions should be explicit"
-./scripts/new-zettel.sh literature "Hexagonal architecture article notes"
+mkdir -p docs/knowledge
+ts=$(date +%Y%m%d%H%M)
+cat > "docs/knowledge/${ts}-policy-decisions.md" <<'EOF'
+# Policy decisions
+
+Policy decisions should be explicit.
+EOF
 ```
 
 ## 4) Configure Obsidian MCP in VS Code
@@ -38,7 +42,7 @@ Current server definition:
     "obsidian": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "obsidian-mcp-rs", "/workspaces/dddemo/notes"]
+      "args": ["-y", "obsidian-mcp-rs", "/workspaces/dddemo/docs"]
     }
   }
 }
@@ -74,16 +78,16 @@ pnpm add -D obsidian-mcp-rs
 
 # Then in .vscode/mcp.json use:
 # "command": "pnpm"
-# "args": ["exec", "obsidian-mcp-rs", "/workspaces/dddemo/notes"]
+# "args": ["exec", "obsidian-mcp-rs", "/workspaces/dddemo/docs"]
 ```
 
 ## 5) Suggested minimal workflow
 
-1. Capture: put rough ideas in `00 Inbox`.
-2. Distill: convert into `10 Fleeting` and `20 Literature` notes.
-3. Evergreen: promote durable ideas into `30 Permanent`.
-4. Connect: organize with `40 Structures` MOC notes.
-5. Execute: link project actions in `50 Projects`.
+1. Capture: add rough ideas as draft notes under `docs/knowledge/`.
+2. Distill: split long drafts into focused notes by topic.
+3. Evergreen: promote durable ideas into stable reference notes.
+4. Connect: create index/MOC notes that link related knowledge docs.
+5. Execute: link architecture knowledge notes to implementation docs in `docs/architecture/`.
 
 ## 6) High-value prompt patterns with MCP
 
@@ -97,3 +101,24 @@ Use these prompts in your MCP client:
 
 - Keep notes versioned with code when they affect architecture decisions.
 - Use one commit for code and one commit for note updates when possible.
+
+## 8) Zettelkasten rules for this repository docs
+
+All project documentation is treated as a Zettelkasten vault under `docs/`.
+
+Rules:
+
+1. New knowledge notes go in `docs/knowledge/` and use stable ID filenames:
+
+- `YYYYMMDDHHmm-title.md`
+
+2. Every new note should link to at least one existing note.
+3. Prefer atomic notes (one idea per note) and connect them through MOC/index notes.
+4. Keep architecture files in `docs/architecture/` as structure/reference notes (semantic filenames are allowed there).
+5. Add or maintain frontmatter metadata (`tags`, optional `related`) to keep graph navigation useful.
+6. When code behavior changes, update the connected architecture/knowledge notes in the same PR.
+
+Recommended split:
+
+- `docs/knowledge/`: literature, permanent notes, decision rationale, experiments.
+- `docs/architecture/`: stable structure notes and implementation-facing references.

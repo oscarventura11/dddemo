@@ -46,7 +46,14 @@ Follow these 5 steps to implement a new feature:
   3. Restore your work.
      This prevents "dirty" local changes from causing false test results.
 
-## 8. Development Environment
+## 8. Pattern Compliance Check (Mandatory)
+
+For every feature implemented or modified under `src/ddd/`, review `docs/architecture/Patterns.md` before finishing the work.
+
+- Verify **Domain**, **Application**, **Infrastructure**, and **Presentation** follow the listed pattern rules.
+- If a feature introduces a new pattern decision or changes current behavior, update `docs/architecture/Patterns.md` in the same commit.
+
+## 9. Development Environment
 
 You can quickly bootstrap a complete development environment using:
 

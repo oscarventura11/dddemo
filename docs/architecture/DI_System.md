@@ -21,18 +21,23 @@ import { CategoryPolicy } from ".../policy/infrastructure/providers/CategoryPoli
 
 const container = new Container();
 
-container.bind<AppConfigProvider>(AppConfigProvider).to(ViteAppConfigProvider).inSingletonScope();
+container
+  .bind<AppConfigProvider>(AppConfigProvider)
+  .to(ViteAppConfigProvider)
+  .inSingletonScope();
 container.bind<Policy>(Policy).to(CategoryPolicy).inSingletonScope();
 ```
 
 ## Dependency Resolution
+
 Services resolve dependencies via constructor injection using `@inject`:
 
 ```typescript
 @injectable()
 class PolicyState {
   constructor(
-    @inject(AppConfigProvider) private readonly configProvider: AppConfigProvider
+    @inject(AppConfigProvider)
+    private readonly configProvider: AppConfigProvider,
   ) {}
 }
 ```
@@ -46,11 +51,13 @@ export function useInjection<T>(token: any): T {
 ```
 
 ## Rules
+
 - Bind against **ports/abstract classes** (`AppConfigProvider`, `Policy`, repositories).
 - Use `inSingletonScope()` for stateful or shared services.
 - Keep concrete infrastructure imports in the DI container composition root.
 - In tests: instantiate services with test doubles for ports (for example, test config providers and mocked policies).
 
 ## 🔗 Related
+
 - [Architecture MOC](./README.md)
 - [Architecture using this DI system](./Hexagonal.md)
