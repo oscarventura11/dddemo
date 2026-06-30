@@ -1,5 +1,9 @@
 # Zettelkasten + Obsidian MCP Setup
 
+Related:
+
+- `202606301030-what-is-zettelkasten.md`
+
 This guide wires your project vault in `docs/` to an MCP-compatible AI client.
 
 ## 1) Use `docs/` as your Obsidian vault
