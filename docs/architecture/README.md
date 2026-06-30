@@ -22,6 +22,7 @@ Architectural principles and references for the project refactored to TS/Preact.
 - [State Management with Signals](./State_Management.md)
 - [Dependency Injection System (InversifyJS)](./DI_System.md)
 - [Policy System (Authorization & RBAC)](./Policy_System.md)
+- [Design Patterns](./Patterns.md)
 
 ## Feature modules
 

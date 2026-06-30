@@ -70,7 +70,7 @@ test("Domain exceptions should have correct naming suffix", async () => {
   const violations = await filesOfProject("tsconfig.app.json")
     .matchingPattern("src/ddd/category/domain/exceptions/(?!.*__tests__).*")
     .should()
-    .matchPattern(".*Error\.ts")
+    .matchPattern(".*Exception\.ts")
     .check();
 
   expect(violations).toEqual([]);

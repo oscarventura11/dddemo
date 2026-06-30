@@ -139,7 +139,7 @@ Handles queries (CQRS read side).
 
 | Method               | Description                                                                                                                                                                                              |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `load()`             | Fetches root categories from the repository, sets them in `CategoryState`, wraps errors via `ErrorManager`.                                                                                              |
+| `load()`             | Fetches root categories from the repository, sets them in `CategoryState`, catches `CategoryException`, and reports user-facing messages via `NotificationService`.                                      |
 | `expand(categoryId)` | Fetches children for an already-loaded node. Merges them into the existing tree immutably. If the expanded node was selected, triggers a re-select to propagate selection down to newly loaded children. |
 
 ---
@@ -150,10 +150,23 @@ Handles queries (CQRS read side).
 
 Handles commands (CQRS write side).
 
-| Method               | Description                                                                                                                               |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `toggle(categoryId)` | Finds the category in the current tree and toggles selection via `CategorySelected.toggle()`. Updates state.                              |
-| `submit()`           | Saves the current selection to the repository. Shows a success notification via `NotificationService` or routes errors to `ErrorManager`. |
+| Method               | Description                                                                                                                                                                           |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `toggle(categoryId)` | Finds the category in the current tree and toggles selection via `CategorySelected.toggle()`. Updates state.                                                                          |
+| `submit()`           | Saves the current selection to the repository. Shows a success notification via `NotificationService` and reports `CategoryException` messages through the same notification service. |
+
+### Category Exceptions
+
+**File:** `src/ddd/category/domain/exceptions/CategoryException.ts`
+
+The module defines a typed exception hierarchy used across infrastructure and application:
+
+- `CategoryException` (base)
+- `CategoryInfrastructureException`
+- `CategoryFetchException`
+- `CategoryCreateException`
+- `CategoryUpdateException`
+- `CategoryDeleteException`
 
 ---
 
@@ -167,7 +180,9 @@ In-memory implementation of `CategoryRepository` backed by `src/data/categories.
 
 - `findAll()` without a parent returns the root level, mapped to domain objects with `maxDepth=1`.
 - `findAll(parentId)` locates the parent in the raw JSON tree and returns its immediate children.
+- Unknown infrastructure errors during reads are rethrown as `CategoryFetchException`.
 - `saveSelection()` simulates a 1 s network delay and logs the selected IDs to the console.
+- Unknown infrastructure errors during writes are rethrown as `CategoryUpdateException`.
 
 ---
 
@@ -177,10 +192,12 @@ In-memory implementation of `CategoryRepository` backed by `src/data/categories.
 
 Stateless translator between raw JSON and domain objects.
 
-| Method                                  | Description                                                                                                                                                         |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `toDomain(raw, maxDepth, currentDepth)` | Recursively maps JSON to `Category`. Stops recursing at `maxDepth`; passes `hasChildrenInSource=true` so branch nodes are created even when children are truncated. |
-| `toSelectionJSON(selected)`             | Returns the selected IDs as a `string[]` for serialization.                                                                                                         |
+| Method                                  | Description                                                                                                                                                                                                                                |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `fromJson(raw, maxDepth, currentDepth)` | Recursively maps JSON to `Category`. Stops recursing at `maxDepth`; passes `hasChildrenInSource=true` so branch nodes are created even when children are truncated. Ensures non-null mapping with empty/default value objects when needed. |
+| `toJson(category)`                      | Serializes a category tree and converts empty value objects to `null`.                                                                                                                                                                     |
+| `toJsonSelection(selected)`             | Returns selected IDs as a serializable list and converts empty IDs to `null`.                                                                                                                                                              |
+| `getId(raw)` / `getChildren(raw)`       | Centralized backend field-access helpers used by repository traversal.                                                                                                                                                                     |
 
 ---
 
@@ -257,7 +274,7 @@ Mount
   └─ CategoryTreeContainer
        └─ readService.load()
             └─ FakeCategoryRepository.findAll()
-                 └─ CategoryMapper.toDomain(raw, depth=1)
+                 └─ CategoryMapper.fromJson(raw, depth=1)
                       └─ CategoryState.setCategories(collection)
                            └─ Signal update → UI re-renders
 

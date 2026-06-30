@@ -3,6 +3,14 @@ import { CategoryCollection } from "../entities/CategoryCollection";
 import { CategoryMother } from "./CategoryMother";
 
 export class CategoryCollectionMother {
+  public static complete(): CategoryCollection {
+    return this.create([CategoryMother.complete(), CategoryMother.withId("2")]);
+  }
+
+  public static withItems(items: Category[]): CategoryCollection {
+    return this.create(items);
+  }
+
   public static create(items: Category[]): CategoryCollection {
     return CategoryCollection.create(items);
   }
@@ -20,5 +28,9 @@ export class CategoryCollectionMother {
 
   public static createEmpty(): CategoryCollection {
     return this.create([]);
+  }
+
+  public static withEmpty(): CategoryCollection {
+    return this.createEmpty();
   }
 }

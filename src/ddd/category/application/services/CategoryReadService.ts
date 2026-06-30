@@ -4,7 +4,8 @@ import { CategoryState } from "../state/CategoryState";
 import { CategoryCollection } from "../../domain/entities/CategoryCollection";
 import { CategoryId } from "../../domain/value-objects/CategoryId";
 import { Category } from "../../domain/entities/Category";
-import { ErrorManager } from "../../../shared/error/application/services/ErrorManager";
+import { NotificationService } from "../../../shared/notification/application/services/NotificationService";
+import { CategoryException } from "../../domain/exceptions/CategoryException";
 
 @injectable()
 export class CategoryReadService {
@@ -12,7 +13,8 @@ export class CategoryReadService {
     @inject(CategoryRepository)
     private readonly _repository: CategoryRepository,
     @inject(CategoryState) private readonly _state: CategoryState,
-    @inject(ErrorManager) private readonly _errorManager: ErrorManager,
+    @inject(NotificationService)
+    private readonly _notificationService: NotificationService,
   ) {}
 
   public async load(): Promise<void> {
@@ -21,7 +23,11 @@ export class CategoryReadService {
       const categories = await this._repository.findAll();
       this._state.setCategories(CategoryCollection.create(categories));
     } catch (error) {
-      this._errorManager.handleError(error);
+      if (error instanceof CategoryException) {
+        this._notificationService.error(error.message);
+      } else {
+        this._notificationService.error("Unexpected category error.");
+      }
     } finally {
       this._state.setLoading(false);
     }
@@ -50,7 +56,11 @@ export class CategoryReadService {
         }
       }
     } catch (error) {
-      this._errorManager.handleError(error);
+      if (error instanceof CategoryException) {
+        this._notificationService.error(error.message);
+      } else {
+        this._notificationService.error("Unexpected category error.");
+      }
     }
   }
 

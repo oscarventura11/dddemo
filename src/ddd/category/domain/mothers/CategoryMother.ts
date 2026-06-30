@@ -3,6 +3,48 @@ import { CategoryId } from "../value-objects/CategoryId";
 import { CategoryName } from "../value-objects/CategoryName";
 
 export class CategoryMother {
+  public static complete(): Category {
+    return this.createWithData({
+      id: "1",
+      name: "Electronics",
+      children: [
+        this.createWithData({ id: "1-1", name: "Computers" }),
+        this.createWithData({ id: "1-2", name: "Smartphones" }),
+      ],
+      hasChildrenInSource: true,
+    });
+  }
+
+  public static withId(id: string): Category {
+    const base = this.complete();
+    return this.createWithData({
+      id,
+      name: base.name.getValue(),
+      children: base.children,
+      hasChildrenInSource: base.children.length > 0,
+    });
+  }
+
+  public static withName(name: string): Category {
+    const base = this.complete();
+    return this.createWithData({
+      id: base.id.getValue(),
+      name,
+      children: base.children,
+      hasChildrenInSource: base.children.length > 0,
+    });
+  }
+
+  public static withChildren(children: Category[]): Category {
+    const base = this.complete();
+    return this.createWithData({
+      id: base.id.getValue(),
+      name: base.name.getValue(),
+      children,
+      hasChildrenInSource: true,
+    });
+  }
+
   public static create(
     params: {
       id?: CategoryId;
@@ -15,7 +57,7 @@ export class CategoryMother {
       params.id ?? CategoryId.create("1"),
       params.name ?? CategoryName.create("Default Category"),
       params.children ?? [],
-      params.hasChildrenInSource ?? false
+      params.hasChildrenInSource ?? false,
     );
   }
 
@@ -31,7 +73,7 @@ export class CategoryMother {
       id: params.id ? CategoryId.create(params.id) : undefined,
       name: params.name ? CategoryName.create(params.name) : undefined,
       children: params.children,
-      hasChildrenInSource: params.hasChildrenInSource
+      hasChildrenInSource: params.hasChildrenInSource,
     });
   }
 
@@ -39,6 +81,18 @@ export class CategoryMother {
     return this.createWithData({
       id: Math.random().toString(36).substring(7),
       name: Math.random().toString(36).substring(7),
+    });
+  }
+
+  public static withHasChildrenInSource(
+    hasChildrenInSource: boolean,
+  ): Category {
+    const base = this.complete();
+    return this.createWithData({
+      id: base.id.getValue(),
+      name: base.name.getValue(),
+      children: hasChildrenInSource ? base.children : [],
+      hasChildrenInSource,
     });
   }
 
